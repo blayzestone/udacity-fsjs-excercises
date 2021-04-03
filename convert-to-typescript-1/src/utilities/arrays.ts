@@ -26,7 +26,7 @@ const lgNum = (arr: (number | string)[]): number => {
 };
 
 // Remove the 3rd item from an array
-const cut3 = (arr:[]) => {
+const cut3 = (arr:(string | number)[]): (string | number)[] => {
   arr.splice(2, 1);
   return arr;
 };

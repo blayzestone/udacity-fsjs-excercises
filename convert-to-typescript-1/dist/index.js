@@ -11,9 +11,10 @@ var wordArr = ['cat', 'dog', 'rabbit', 'bird'];
 var arrSum = arrays_js_1.default.addArr(numArr);
 var mixArr = arrays_js_1.default.concatArr(numArr, wordArr);
 var myNum = '15' % 2;
+var five = parseInt('5');
 // results of function calls
 console.log(arrays_js_1.default.cut3(mixArr));
 console.log(numbers_js_1.default.sum(arrSum, myNum));
 console.log(strings_js_1.default.capitalize('the quick brown fox'));
-console.log(numbers_js_1.default.multiply('5', 8));
+console.log(numbers_js_1.default.multiply(five, 8));
 console.log(arrays_js_1.default.lgNum(mixArr));
