@@ -17,7 +17,7 @@ const lowerCase = (str: string):string => {
     return str.toLowerCase();
 };
 
-module.exports = {
+export = {
     concat,
     capitalize,
     upperCase,
