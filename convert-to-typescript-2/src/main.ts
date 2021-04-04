@@ -11,34 +11,34 @@ const rl = readline.createInterface({
 });
 
 // Create questions for STDIN Input from console.
-const menuQ = () => {
+const menuQ = (): Promise<string> => {
   return new Promise((resolve, reject) => {
     // (readable, writeable from readline interface)
-    rl.question('Your choice: ', (answer) => {
+    rl.question('Your choice: ', (answer: string): void => {
       resolve(answer);
     });
   });
 };
 
-const milkQ = () => {
+const milkQ = (): Promise<string> => {
   return new Promise((resolve, reject) => {
-    rl.question('How many cups of milk to add? ', (answer) => {
+    rl.question('How many cups of milk to add? ', (answer: string): void => {
       resolve(answer);
     });
   });
 };
 
-const espressoQ = () => {
+const espressoQ = (): Promise<string> => {
   return new Promise((resolve, reject) => {
-    rl.question('How many shots of espresso to add? ', (answer) => {
+    rl.question('How many shots of espresso to add? ', (answer: string): void => {
       resolve(answer);
     });
   });
 };
 
-const peppermintQ = () => {
+const peppermintQ = (): Promise<string> => {
   return new Promise((resolve, reject) => {
-    rl.question('How many shots of peppermint to add? ', (answer) => {
+    rl.question('How many shots of peppermint to add? ', (answer: string): void => {
       resolve(answer);
     });
   });
@@ -46,9 +46,9 @@ const peppermintQ = () => {
 
 // Create parent class Mocha
 class Mocha {
-  milk;
-  shot;
-  chocolateType;
+  milk: number;
+  shot: number;
+  chocolateType: string;
 
   constructor() {
     this.milk = 1;
@@ -56,7 +56,7 @@ class Mocha {
     this.chocolateType = 'dark';
   }
   // list the ingredients of the mocha
-  prepare() {
+  prepare(): void {
     console.log('Your', this.chocolateType, ' Chocolate Mocha Ingredients:');
     console.log(this.chocolateType, ' chocolate');
     console.log('Cups of milk: ', this.milk);
@@ -75,14 +75,14 @@ class DarkChocolateMocha extends Mocha {
 // inherits from Mocha
 class PeppermintMocha extends Mocha {
   // add peppermint property
-  peppermintSyrup;
+  peppermintSyrup: number;
   constructor() {
     // include super to pull in parent constructor
     super();
     this.peppermintSyrup = 1;
   }
   // Overrides Mocha prepare with additional statements
-  prepare() {
+  prepare(): void {
     console.log('Your Peppermint Mocha Ingredients:');
     console.log('Dark chocolate');
     console.log('Cups of milk: ', this.milk);
@@ -92,7 +92,7 @@ class PeppermintMocha extends Mocha {
 }
 
 // display menu and return selected menu item
-const showMenu = async () => {
+const showMenu = async (): Promise<string> => {
   console.log(
     'Select Mocha from menu: \n',
     '1: Create White Chocolate Mocha \n',
@@ -106,15 +106,15 @@ const showMenu = async () => {
 
 // User questions
 const userOptions = async (
-  mochaObject
-) => {
-  const milkPicked = await milkQ();
+  mochaObject: Mocha | PeppermintMocha
+): Promise<void> => {
+  const milkPicked = await (milkQ() as unknown) as string;
   const milkChoice = parseInt(milkPicked);
-  const espPicked = await espressoQ();
+  const espPicked = await (espressoQ() as unknown) as string;
   const espChoice = parseInt(espPicked);
   // If peppermint mocha
   if (mochaObject instanceof PeppermintMocha) {
-    const pepPicked = await peppermintQ();
+    const pepPicked = await (peppermintQ() as unknown) as string;
     const pepChoice = parseInt(pepPicked);
     mochaObject.peppermintSyrup = pepChoice;
   }
@@ -124,11 +124,11 @@ const userOptions = async (
   mochaObject.prepare();
 };
 
-const main = () => {
+const main = (): void => {
   let menuChoice = 0;
-  const buildMocha = async ()=> {
+  const buildMocha = async (): Promise<void>  => {
     do {
-      const optionPicked = await showMenu();
+      const optionPicked = await (showMenu() as unknown) as string;
       menuChoice = parseInt(optionPicked);
       switch (menuChoice) {
         case 0: {
