@@ -32,8 +32,11 @@ async function getRegionCountries(regionalbloc: string) {
   for (let i = 0; i < data.length; i++) {
     countries.push(data[i].name);
   }
+
   return countries;
 }
+
+getRegionCountries("nafta")
 
 /** Create getRegionCapitals function here */
 async function getRegionCapitals(regionalbloc: string) {

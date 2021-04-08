@@ -84,6 +84,7 @@ function getRegionCountries(regionalbloc) {
         });
     });
 }
+getRegionCountries("nafta");
 /** Create getRegionCapitals function here */
 function getRegionCapitals(regionalbloc) {
     return __awaiter(this, void 0, void 0, function () {
