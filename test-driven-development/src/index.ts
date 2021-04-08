@@ -8,6 +8,21 @@ import axios from 'axios';
  */
 
 /** Create getCountry Function here */
+async function getCountry(name: string) {
+  const getApi = await axios(
+    `https://restcountries.eu/rest/v2/name/${name}`
+  );
+
+  const data = getApi.data[0];
+
+  return {
+    capital: data.capital,
+    region: data.region,
+    numericCode: data.numericCode
+  };
+}
+
+console.log(getCountry("canada"));
 
 
 /** Create a test for this getRegion function */
@@ -24,7 +39,18 @@ async function getRegionCountries(regionalbloc: string) {
 }
 
 /** Create getRegionCapitals function here */
+async function getRegionCapitals(regionalbloc: string) {
+  const countryEndpoints = await getRegionCountries(regionalbloc);
+  const promises = countryEndpoints.map((endpoint: any) => 
+    axios(`https://restcountries.eu/rest/v2/name/${endpoint}`)
+  );
+  const arr = await Promise.all(promises);
+  const capitals = arr.map(({ data }) => data[0].capital)
 
+  return capitals;
+}
+
+console.log(getRegionCapitals("nafta"));
 
 export default {
   getCountry,
