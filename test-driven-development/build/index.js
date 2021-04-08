@@ -41,6 +41,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Use Axios to get data from restcountries api */
 var axios_1 = __importDefault(require("axios"));
+/** Use the free API https://restcountries.eu/
+ * You will use the following endpoints
+ * https://restcountries.eu/rest/v2/name/{name} for countries by name
+ * https://restcountries.eu/rest/v2/regionalbloc/{regionalbloc} for region blocks
+ */
 /** Create getCountry Function here */
 function getCountry(name) {
     return __awaiter(this, void 0, void 0, function () {
@@ -51,7 +56,11 @@ function getCountry(name) {
                 case 1:
                     getApi = _a.sent();
                     data = getApi.data[0];
-                    return [2 /*return*/, data];
+                    return [2 /*return*/, {
+                            capital: data.capital,
+                            region: data.region,
+                            numericCode: data.numericCode
+                        }];
             }
         });
     });
@@ -99,7 +108,6 @@ function getRegionCapitals(regionalbloc) {
         });
     });
 }
-console.log(getRegionCapitals("nafta"));
 exports.default = {
     getCountry: getCountry,
     getRegionCountries: getRegionCountries,

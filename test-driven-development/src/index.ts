@@ -22,9 +22,6 @@ async function getCountry(name: string) {
   };
 }
 
-console.log(getCountry("canada"));
-
-
 /** Create a test for this getRegion function */
 async function getRegionCountries(regionalbloc: string) {
   const getApi = await axios(
@@ -49,8 +46,6 @@ async function getRegionCapitals(regionalbloc: string) {
 
   return capitals;
 }
-
-console.log(getRegionCapitals("nafta"));
 
 export default {
   getCountry,
