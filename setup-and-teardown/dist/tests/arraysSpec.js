@@ -20,8 +20,8 @@ describe("array utilities", function () {
         it('should add numbers in array and be truthy', function () {
             expect(arrays_1.default.addArr(numArr)).toBeTruthy();
         });
-        it('should add numbers in array and be 19', function () {
-            expect(arrays_1.default.addArr(numArr)).toBe(19);
+        it('should add numbers in array and be 18', function () {
+            expect(arrays_1.default.addArr(numArr)).toBe(18);
         });
     });
     describe("concatinate two arrays", function () {
